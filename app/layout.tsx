@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { DirectionProvider } from "@/components/ui/direction"
 import { HeroHeader } from "./_components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -29,8 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="fa"
       suppressHydrationWarning
+      dir="rtl"
       className={cn(
         "h-full",
         "antialiased",
@@ -47,9 +49,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <HeroHeader/>
-            {children}
-
+          <DirectionProvider direction="rtl" dir="rtl">
+          <HeroHeader />
+          {children}
+          </DirectionProvider>
         </ThemeProvider>
       </body>
     </html>

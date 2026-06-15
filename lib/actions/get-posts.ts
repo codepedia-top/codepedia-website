@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 
-const postsDir = path.join(process.cwd(), "@/content/posts");
+const postsDir = path.join(process.cwd(), "content", "posts");
 
 function extractMetadata(source: string) {
   const match = source.match(/export const metadata = ({[\s\S]*?});/);
@@ -27,8 +27,8 @@ export async function getAllPosts() {
         const metadata = extractMetadata(source);
 
         return {
-          slug: path.basename(filename, ".mdx"),
-          metadata,
+          slug: path.join("blog" ,filename.replace(/\.mdx$/, "")),
+          metadata
         };
       })
   );
