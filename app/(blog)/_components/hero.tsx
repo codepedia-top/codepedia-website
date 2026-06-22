@@ -2,17 +2,18 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
 import { Github, Insta, Telegram } from "@/components/logo";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
     <section className="mx-auto w-full max-w-5xl overflow-hidden pt-16">
       <div className="relative z-10 flex max-w-2xl flex-col gap-5 px-4">
-        <a
+        <Link
           className={cn(
             "group flex w-fit items-center gap-3 rounded-sm border bg-card p-1 shadow-xs",
             "fade-in slide-in-from-bottom-10 animate-in fill-mode-backwards transition-all delay-500 duration-500 ease-out",
           )}
-          href="#link"
+          href="#topstories"
         >
           <div className="pr-1">
             <ArrowRightIcon className="size-3 -translate-x-0.5 duration-150 ease-out group-hover:translate-x-0.5" />
@@ -24,7 +25,7 @@ export function HeroSection() {
           <div className="rounded-xs border bg-card px-1.5 py-0.5 shadow-sm">
             <p className="font-mono text-xs">NEW</p>
           </div>
-        </a>
+        </Link>
 
         <h1
           className={cn(

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { DirectionProvider } from "@/components/ui/direction"
-import { HeroHeader } from "./_components/header";
+import { HeroHeader } from "../components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const vazirmatn = Vazirmatn({ variable: "--font-sans" });
