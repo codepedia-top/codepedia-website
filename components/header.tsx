@@ -16,7 +16,7 @@ export function HeroHeader() {
       })}
     >
       <nav className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-4">
-        <Link className="p-2 hover:bg-muted dark:hover:bg-muted/50" href="#">
+        <Link className="p-2 hover:bg-muted dark:hover:bg-muted/50" href="/">
           <Logo className="h-8 font-mono text-2xl" />
         </Link>
         <div className="hidden items-center gap-2 md:flex">

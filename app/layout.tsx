@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
 import "./globals.css";
+import "./highlightjs.css"
 import { cn } from "@/lib/utils";
 import { DirectionProvider } from "@/components/ui/direction"
 import { HeroHeader } from "../components/header";

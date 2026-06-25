@@ -2,20 +2,24 @@ import type { NextConfig } from "next";
 import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  /* config options here */
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname:"storage.efferd.com"
+        hostname: "res.cloudinary.com"
       }
     ]
   },
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  /* config options here */
 };
 
 const withMDX = createMDX({
-  extension: /\.(md|mdx)$/,
+  // extension: /\.(md|mdx)$/,
+  options: {
+    remarkPlugins: ["remark-gfm"],
+    rehypePlugins: ['rehype-highlight'],
+  }
 })
 
 // Merge MDX config with Next.js config

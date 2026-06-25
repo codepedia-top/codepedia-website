@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-// import { LazyImage } from "@/components/lazy-image";
 import { getAllPosts } from "@/lib/get-posts";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
@@ -66,14 +65,14 @@ export async function BlogsSection() {
                     <time dateTime={topStories[0].metadata.publishDate}>
                       {new Date(
                         topStories[0].metadata.publishDate,
-                      ).toLocaleDateString("en-US", {
+                      ).toLocaleDateString("fa-IR", {
                         month: "short",
                         day: "numeric",
                         year: "numeric",
                       })}
                     </time>
                     <span>&middot;</span>
-                    {topStories[0].metadata.readingTime} دقیقه برای خواندن
+                    {(topStories[0].metadata.readingTime).toLocaleString('fa-IR')} دقیقه برای خواندن
                     <Badge>{topStories[0].metadata.tag}</Badge>
                   </div>
                   <h3 className="text-xl font-semibold tracking-tighter underline-offset-4 group-hover:underline">
@@ -157,14 +156,14 @@ function BlogCard({
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
             {metadata.tag && <Badge>{metadata.tag}</Badge>}
             <time dateTime={metadata.publishDate}>
-              {new Date(metadata.publishDate).toLocaleDateString("en-US", {
+              {new Date(metadata.publishDate).toLocaleDateString("fa-IR", {
                 month: "short",
                 day: "numeric",
                 year: "numeric",
               })}
             </time>
             <span>&middot;</span>
-            <span>{metadata.readingTime} دقیقه برای خواندن</span>
+            <span>{(metadata.readingTime).toLocaleString("fa-IR")} دقیقه برای خواندن</span>
           </div>
         </div>
       </Link>
