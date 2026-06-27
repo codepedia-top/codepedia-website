@@ -32,7 +32,7 @@ export async function BlogsSection() {
 
   // for fetching top stories in my blog
   const topStories = posts.filter((blog) => blog.metadata.top).slice(0, 7);
-  const learningStories = posts.filter((blog) => blog.metadata.learning).slice(0, 7);
+  const learningStories = posts.filter((blog) => blog.metadata.tag == "go").slice(0, 7);
 
   return (
     <section
@@ -125,13 +125,13 @@ export async function BlogsSection() {
                   آموزش‌ها
                 </h2>
 
-              <Link href={topStories[0].slug} className="group relative">
-                {topStories[0].metadata.image && (
+              <Link href={learningStories[0].slug} className="group relative">
+                {learningStories[0].metadata.image && (
                   <div className="relative aspect-16/10 overflow-hidden border border-border">
                     <BlogImage
-                      alt={topStories[0].metadata.title}
+                      alt={learningStories[0].metadata.title}
                       className="transition-all duration-500 group-hover:scale-105"
-                      src={topStories[0].metadata.image}
+                      src={learningStories[0].metadata.image}
                       fill
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
@@ -139,9 +139,9 @@ export async function BlogsSection() {
                 )}
                 <div className="py-4">
                   <div className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
-                    <time dateTime={topStories[0].metadata.publishDate}>
+                    <time dateTime={learningStories[0].metadata.publishDate}>
                       {new Date(
-                        topStories[0].metadata.publishDate,
+                        learningStories[0].metadata.publishDate,
                       ).toLocaleDateString("fa-IR", {
                         month: "short",
                         day: "numeric",
@@ -149,17 +149,17 @@ export async function BlogsSection() {
                       })}
                     </time>
                     <span>&middot;</span>
-                    {(topStories[0].metadata.readingTime).toLocaleString('fa-IR')} دقیقه برای خواندن
-                    <Badge>{topStories[0].metadata.tag}</Badge>
+                    {(learningStories[0].metadata.readingTime).toLocaleString('fa-IR')} دقیقه برای خواندن
+                    <Badge>{learningStories[0].metadata.tag}</Badge>
                   </div>
                   <h3 className="text-xl font-semibold tracking-tighter underline-offset-4 group-hover:underline">
-                    {topStories[0].metadata.title}
+                    {learningStories[0].metadata.title}
                   </h3>
                 </div>
               </Link>
             </div>
             <div className="flex flex-col">
-              {topStories.slice(1, 7).map((blog) => (
+              {learningStories.slice(1, 7).map((blog) => (
                 <Link
                   key={blog.metadata.title}
                   href={blog.slug}
