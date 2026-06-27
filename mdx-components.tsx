@@ -33,7 +33,8 @@ export function useMDXComponents(
     pre: (props) => (
       <pre
         dir="ltr"
-        className="my-6 overflow-x-auto whitespace-pre-wrap rounded sm:rounded-md bg-zinc-100 dark:bg-zinc-900 p-4 text-sm leading-relaxed max-h-128"
+        style={props.style}
+        className={`my-6 overflow-x-auto whitespace-pre-wrap rounded sm:rounded-md bg-zinc-100 dark:bg-zinc-900 p-4 text-sm leading-relaxed max-h-128 font-mono no-scrollbar ${props.className}`}
         {...props}
       />
     ),
