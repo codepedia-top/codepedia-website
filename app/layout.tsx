@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { DirectionProvider } from "@/components/ui/direction"
 import { HeroHeader } from "../components/header";
 import { ThemeProvider } from "@/components/theme-provider";
+import FooterSection from "@/components/footer";
 
 const vazirmatn = Vazirmatn({ variable: "--font-sans" });
 
@@ -53,6 +54,7 @@ export default function RootLayout({
           <DirectionProvider direction="rtl" dir="rtl">
           <HeroHeader />
           {children}
+          <FooterSection/>
           </DirectionProvider>
         </ThemeProvider>
       </body>

@@ -32,6 +32,7 @@ export async function BlogsSection() {
 
   // for fetching top stories in my blog
   const topStories = posts.filter((blog) => blog.metadata.top).slice(0, 7);
+  const learningStories = posts.filter((blog) => blog.metadata.learning).slice(0, 7);
 
   return (
     <section
@@ -45,7 +46,83 @@ export async function BlogsSection() {
             <div className="flex flex-col p-5 lg:border-r">
 
                 <h2 className="w-fit mb-6 border border-border bg-primary px-3 py-1 text-sm font-semibold tracking-tight text-primary-foreground">
-                  محبوب‌ترین‌ها
+                  جدیدترین‌ها
+                </h2>
+
+              <Link href={topStories[0].slug} className="group relative">
+                {topStories[0].metadata.image && (
+                  <div className="relative aspect-16/10 overflow-hidden border border-border">
+                    <BlogImage
+                      alt={topStories[0].metadata.title}
+                      className="transition-all duration-500 group-hover:scale-105"
+                      src={topStories[0].metadata.image}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
+                )}
+                <div className="py-4">
+                  <div className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
+                    <time dateTime={topStories[0].metadata.publishDate}>
+                      {new Date(
+                        topStories[0].metadata.publishDate,
+                      ).toLocaleDateString("fa-IR", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                    </time>
+                    <span>&middot;</span>
+                    {(topStories[0].metadata.readingTime).toLocaleString('fa-IR')} دقیقه برای خواندن
+                    <Badge>{topStories[0].metadata.tag}</Badge>
+                  </div>
+                  <h3 className="text-xl font-semibold tracking-tighter underline-offset-4 group-hover:underline">
+                    {topStories[0].metadata.title}
+                  </h3>
+                </div>
+              </Link>
+            </div>
+            <div className="flex flex-col">
+              {topStories.slice(1, 7).map((blog) => (
+                <Link
+                  key={blog.metadata.title}
+                  href={blog.slug}
+                  className="group flex gap-4 border-b border-border p-5 first:border-t last:border-b-0 lg:first:border-t-0"
+                >
+                  <div className="flex flex-col justify-center">
+                    <div className="mb-1 flex items-center gap-2 text-sm text-muted-foreground">
+                      <time dateTime={blog.metadata.publishDate}>
+                        {new Date(blog.metadata.publishDate).toLocaleDateString(
+                          "en-US",
+                          {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          },
+                        )}
+                      </time>
+                      <span>&middot;</span>
+                      {blog.metadata.readingTime} برای خواندن
+                      {blog.metadata.tag && <Badge>{blog.metadata.tag}</Badge>}
+                    </div>
+                    <h3 className="text-lg font-semibold tracking-tighter underline-offset-4 group-hover:underline">
+                      {blog.metadata.title}
+                    </h3>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+      {/* learning Stories */}
+      {learningStories.length > 0 && (
+        <div className="mb-12 border border-border">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="flex flex-col p-5 lg:border-r">
+
+                <h2 className="w-fit mb-6 border border-border bg-primary px-3 py-1 text-sm font-semibold tracking-tight text-primary-foreground">
+                  آموزش‌ها
                 </h2>
 
               <Link href={topStories[0].slug} className="group relative">
@@ -142,7 +219,7 @@ function BlogCard({
           <div className="relative h-50 overflow-hidden border border-border">
             <BlogImage
               alt={metadata.title}
-              className="transition-all duration-500 group-hover:scale-105"
+              className="object-cover object-left transition-transform duration-300 ease-in-out group-hover:scale-[1.01]"
               src={metadata.image}
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
               fill

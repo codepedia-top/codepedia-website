@@ -1,4 +1,6 @@
+import { Quote } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
+import { ComponentProps } from "react";
 // import Image from "next/image";
 
 export function useMDXComponents(
@@ -61,6 +63,12 @@ export function useMDXComponents(
         className="border-r border-border px-6 py-4 text-sm last:border-r-0"
         {...props}
       />
+    ),
+    blockquote: ({ children, ...props }: ComponentProps<"blockquote">) => (
+      <blockquote className="border-none px-6 py-4 text-md" {...props}>
+        <Quote className="text-muted-foreground size-12" />
+        {children}
+      </blockquote>
     ),
     // Button: (props) => <Button {...props} />,
     // img: (props) => (<Image sizes="100vw" style={{ width: '100%', height: 'auto' }} {...props}/>),
