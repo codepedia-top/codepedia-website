@@ -43,7 +43,7 @@ export async function BlogsSection() {
       {topStories.length > 0 && (
         <div className="mb-12 border border-border">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="flex flex-col p-5 lg:border-r">
+            <div className="flex flex-col p-5 lg:border-l">
 
                 <h2 className="w-fit mb-6 border border-border bg-primary px-3 py-1 text-sm font-semibold tracking-tight text-primary-foreground">
                   جدیدترین‌ها
@@ -119,7 +119,7 @@ export async function BlogsSection() {
       {learningStories.length > 0 && (
         <div className="mb-12 border border-border">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="flex flex-col p-5 lg:border-r">
+            <div className="flex flex-col p-5 lg:border-l">
 
                 <h2 className="w-fit mb-6 border border-border bg-primary px-3 py-1 text-sm font-semibold tracking-tight text-primary-foreground">
                   آموزش‌ها
@@ -191,7 +191,7 @@ export async function BlogsSection() {
           </div>
         </div>
       )}
-      <ul className="grid grid-cols-1 divide-y divide-border overflow-hidden border border-b-0 border-border md:grid-cols-2 md:divide-y-0 lg:grid-cols-3">
+      <ul className="grid grid-cols-1 divide-y divide-border overflow-hidden md:grid-cols-2 lg:grid-cols-3">
         {posts.map((blog) => (
           <BlogCard {...blog} key={blog.metadata.title} />
         ))}
@@ -209,7 +209,7 @@ function BlogCard({
   return (
     <li
       className={cn(
-        "border-border p-4 md:border-b md:border-r md:nth-[2n]:border-r-0 lg:nth-[2n]:border-r lg:nth-[3n]:border-r-0",
+        "border border-border p-4 m-0.5",
         className,
       )}
       {...props}
