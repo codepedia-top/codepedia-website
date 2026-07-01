@@ -18,7 +18,7 @@ const socialMedias = [
 
 export default function FooterSection() {
   return (
-    <footer className="py-8 md:py-16 border border-t">
+    <footer className="py-8 md:py-16 bg-secondary -z-20">
       <div className="mx-auto max-w-5xl px-6">
         <Link href="/" aria-label="go home" className="mx-auto block size-fit">
           <Logo className="h-8 font-mono text-4xl" />
