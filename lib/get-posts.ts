@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { metadataSchema } from "./zodschemas";
 
 const postsDir = path.join(process.cwd(), "content", "posts");
 
@@ -24,7 +25,7 @@ export async function getAllPosts() {
       .map(async (filename) => {
         const filePath = path.join(postsDir, filename);
         const source = await fs.readFile(filePath, "utf8");
-        const metadata = extractMetadata(source);
+        const metadata = metadataSchema.parse(extractMetadata(source));
 
         return {
           slug: path.join("blog" ,filename.replace(/\.mdx$/, "")),

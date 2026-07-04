@@ -11,9 +11,9 @@ export async function BlogsSection() {
   // ).sort();
 
   // for fetching top stories in my blog
-  const topStories = posts.filter((blog) => blog.metadata.top).slice(0, 7);
+  const topStories = posts.filter((blog) => blog.metadata.featured).slice(0, 7);
   const learningStories = posts
-    .filter((blog) => blog.metadata.tag == "go")
+    .filter((blog) => blog.metadata.tags[0] == "go")
     .slice(0, 7);
 
   return (

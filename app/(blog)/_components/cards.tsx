@@ -2,27 +2,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { BlogImage } from "./blog-image";
 import { Badge } from "@/components/ui/badge";
-
-interface MetaDataType {
-  title: string;
-  description: string;
-  author: string;
-  publishDate: string;
-  image: string;
-  tag: string;
-  readingTime: number;
-  top: boolean;
-}
-
-type BlogType = {
-  slug: string;
-  metadata: MetaDataType;
-};
-
-type CategoryType = {
-  title: string;
-  stories: BlogType[];
-};
+import { BlogType, CategoryType } from "@/lib/zodschemas";
 
 export function BlogCard({
   slug,
@@ -59,9 +39,9 @@ export function BlogCard({
             {metadata.title}
           </h3>
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
-            {metadata.tag && <Badge>{metadata.tag}</Badge>}
-            <time dateTime={metadata.publishDate}>
-              {new Date(metadata.publishDate).toLocaleDateString("fa-IR", {
+            {metadata.tags[0] && <Badge>{metadata.tags[0]}</Badge>}
+            <time dateTime={(metadata.publishedAt).toDateString()}>
+              {new Date(metadata.publishedAt).toLocaleDateString("fa-IR", {
                 month: "short",
                 day: "numeric",
                 year: "numeric",
@@ -110,9 +90,9 @@ export function CategiricalCard({ stories, title, ...props }: CategoryType) {
                 )}
                 <div className="py-4">
                   <div className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
-                    <time dateTime={stories[0].metadata.publishDate}>
+                    <time dateTime={(stories[0].metadata.publishedAt).toDateString()}>
                       {new Date(
-                        stories[0].metadata.publishDate,
+                        stories[0].metadata.publishedAt,
                       ).toLocaleDateString("fa-IR", {
                         month: "short",
                         day: "numeric",
@@ -125,7 +105,7 @@ export function CategiricalCard({ stories, title, ...props }: CategoryType) {
                     )}{" "}
                     دقیقه برای خواندن
                     <Badge className="bg-secondary text-secondary-foreground">
-                      {stories[0].metadata.tag}
+                      {stories[0].metadata.tags[0]}
                     </Badge>
                   </div>
                   <h3 className="text-xl font-semibold tracking-tighter underline-offset-4 group-hover:text-primary-foreground">
@@ -151,9 +131,9 @@ export function CategiricalCard({ stories, title, ...props }: CategoryType) {
 
                   <div className="flex flex-col justify-center">
                     <div className="mb-1 flex items-center gap-2 text-sm text-muted-foreground">
-                      <time dateTime={blog.metadata.publishDate}>
-                        {new Date(blog.metadata.publishDate).toLocaleDateString(
-                          "en-US",
+                      <time dateTime={(blog.metadata.publishedAt).toDateString()}>
+                        {new Date(blog.metadata.publishedAt).toLocaleDateString(
+                          "fa-IR",
                           {
                             month: "short",
                             day: "numeric",
@@ -163,7 +143,7 @@ export function CategiricalCard({ stories, title, ...props }: CategoryType) {
                       </time>
                       <span>&middot;</span>
                       {blog.metadata.readingTime} برای خواندن
-                      {blog.metadata.tag && <Badge>{blog.metadata.tag}</Badge>}
+                      {blog.metadata.tags[0] && <Badge>{blog.metadata.tags[0]}</Badge>}
                     </div>
                     <h3 className="text-lg font-semibold tracking-tighter underline-offset-4 group-hover:text-primary-foreground">
                       {blog.metadata.title}

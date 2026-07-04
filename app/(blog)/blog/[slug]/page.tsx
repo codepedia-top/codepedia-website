@@ -14,8 +14,9 @@ export default async function Page({
     const post = await import(`@/content/posts/${slug}.mdx`);
     Content = post.default;
     metadata = post.metadata;
-  } catch {
-    return notFound();
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
   return (
     <>
@@ -33,8 +34,8 @@ export default async function Page({
                   </p>
                 )}
                 <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
-                  <time dateTime={metadata.publishDate}>
-                    {new Date(metadata.publishDate).toLocaleDateString(
+                  <time dateTime={metadata.publishedAt}>
+                    {new Date(metadata.publishedAt).toLocaleDateString(
                       "fa-IR",
                       {
                         year: "numeric",
