@@ -27,7 +27,7 @@ export async function BlogsSection() {
       {/* learning Stories */}
       <CategiricalCard stories={learningStories} title="آموزش‌ها" />
 
-      <ul className="grid grid-cols-1 divide-y divide-border overflow-hidden md:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid grid-cols-1 divide-y divide-border overflow-hidden md:grid-cols-2">
         {posts.map((blog) => (
           <BlogCard {...blog} key={blog.metadata.title} />
         ))}

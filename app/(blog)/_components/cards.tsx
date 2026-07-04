@@ -22,8 +22,8 @@ export function BlogCard({
             "repeating-linear-gradient(45deg, #000 0px, #111 2px, #000 4px, #222 6px)",
         }}
       />
-      <Link href={slug} className="group grid grid-rows-1">
-        {metadata.image && (
+      <Link href={slug} className="group grid grid-rows-1 gap-2">
+        {/* {metadata.image && (
           <div className="relative h-50 overflow-hidden border border-border">
             <BlogImage
               alt={metadata.title}
@@ -33,12 +33,12 @@ export function BlogCard({
               fill
             />
           </div>
-        )}
+        )} */}
         <div className="py-2">
           <h3 className="mb-2 text-xl font-semibold tracking-tighter underline-offset-4 group-hover:underline">
             {metadata.title}
           </h3>
-          <div className="flex items-center gap-3 text-sm text-muted-foreground">
+          <div className="flex items-canter gap-3 text-sm text-muted-foreground">
             {metadata.tags[0] && <Badge>{metadata.tags[0]}</Badge>}
             <time dateTime={(metadata.publishedAt).toDateString()}>
               {new Date(metadata.publishedAt).toLocaleDateString("fa-IR", {
