@@ -32,9 +32,7 @@ export default function FooterSection() {
   return (
     <footer className="sticky bottom-0 z-0 h-72 overflow-hidden bg-card">
       {/* Decorative Text */}
-      <h2
-        className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 select-none font-black tracking-tighter text-[7rem] md:text-[12rem] lg:text-[16rem] text-muted/10 whitespace-nowrap"
-      >
+ <h2 className="pointer-events-none absolute -bottom-12 left-1/2 -translate-x-1/2 select-none text-[5rem] font-black tracking-tight text-muted/20 md:text-[10rem] lg:text-[14rem]">
         CODEPEDIA
       </h2>
 
