@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
 import "./globals.css";
-import "./highlightjs.css"
+import "./highlightjs.css";
 import { cn } from "@/lib/utils";
-import { DirectionProvider } from "@/components/ui/direction"
+import { DirectionProvider } from "@/components/ui/direction";
 import { HeroHeader } from "../components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import FooterSection from "@/components/footer";
@@ -52,9 +52,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <DirectionProvider direction="rtl" dir="rtl">
-          <HeroHeader />
-          {children}
-          <FooterSection/>
+            <HeroHeader />
+            <div className="relative">
+              <main className="relative z-10 min-h-screen bg-background">
+                {children}
+              </main>
+            </div>
+            <FooterSection />
           </DirectionProvider>
         </ThemeProvider>
       </body>
