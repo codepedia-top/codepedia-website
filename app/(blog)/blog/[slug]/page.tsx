@@ -14,9 +14,8 @@ export default async function Page({
     const post = await import(`@/content/posts/${slug}.mdx`);
     Content = post.default;
     metadata = post.metadata;
-  } catch (error) {
-    console.error(error);
-    throw error;
+  } catch {
+    return notFound();
   }
   return (
     <>
