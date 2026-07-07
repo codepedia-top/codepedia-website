@@ -23,6 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "codepedia",
   description: "codepedia blog",
+  metadataBase: new URL("https://www.codepedia.top"),
 };
 
 export default function RootLayout({
