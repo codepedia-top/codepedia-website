@@ -1,6 +1,52 @@
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  let metadata;
+  try {
+    const post = await import(`@/content/posts/${slug}.mdx`);
+    metadata = post.metadata;
+  } catch {
+    return {};
+  }
+  return {
+    title: `${metadata.title} | codepedia`,
+    description: metadata.description,
+    authors: [
+      {
+        name: metadata.author,
+      },
+    ],
+
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      url: `https://www.codepedia.top/blog/${slug}`,
+      siteName: "codepedia",
+      locale: "fa_IR",
+      type: "article",
+
+      publishedTime: new Date(metadata.publishedAt).toISOString(),
+      modifiedTime: new Date(metadata.updatedAt).toISOString(),
+      images: [metadata.image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metadata.title,
+      description: metadata.description,
+      images: [metadata.image],
+    },
+
+    keywords: metadata.tags,
+  };
+}
 
 export default async function Page({
   params,
