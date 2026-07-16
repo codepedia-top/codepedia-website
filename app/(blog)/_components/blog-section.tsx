@@ -5,16 +5,20 @@ export async function BlogsSection() {
   // fetch all posts data
   const posts = await getAllPosts();
 
-  // for fetch all tags and store in array
-  // const tags = Array.from(
-  //   new Set(posts.map((blog) => blog.metadata.tag).filter(Boolean)),
-  // ).sort();
-
-  // for fetching top stories in my blog
-  const topStories = posts.filter((blog) => blog.metadata.featured).slice(0, 7);
+  const topStories = posts
+    .filter((blog) => blog.metadata.featured)
+    .sort(
+      (a, b) =>
+        b.metadata.publishedAt.getTime() - a.metadata.publishedAt.getTime(),
+    )
+    .slice(0, 5);
   const learningStories = posts
     .filter((blog) => blog.metadata.tags[0] == "go")
-    .slice(0, 7);
+    .sort(
+      (a, b) =>
+        b.metadata.publishedAt.getTime() - a.metadata.publishedAt.getTime(),
+    )
+    .slice(0, 5);
 
   return (
     <section
@@ -28,9 +32,15 @@ export async function BlogsSection() {
       <CategiricalCard stories={learningStories} title="آموزش‌ها" />
 
       <ul className="grid grid-cols-1 divide-y divide-border overflow-hidden md:grid-cols-2">
-        {posts.map((blog) => (
-          <BlogCard {...blog} key={blog.metadata.title} />
-        ))}
+        {posts
+          .sort(
+            (a, b) =>
+              b.metadata.publishedAt.getTime() -
+              a.metadata.publishedAt.getTime(),
+          )
+          .map((blog) => (
+            <BlogCard {...blog} key={blog.metadata.title} />
+          ))}
       </ul>
     </section>
   );
