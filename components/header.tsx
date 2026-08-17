@@ -20,7 +20,7 @@ export function HeroHeader() {
           <Logo className="h-8 font-mono text-2xl" />
         </Link>
         <div className="hidden items-center gap-2 md:flex">
-          <Button size="sm">Get Started</Button>
+          {/* <Button size="sm">Get Started</Button> */}
         </div>
       </nav>
     </header>

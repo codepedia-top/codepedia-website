@@ -1,16 +1,19 @@
 import type React from "react";
 
 export const Logo = (props: React.ComponentProps<"svg">) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 70 81"
-    fill="currentColor"
-    {...props}
-  >
-    <path
-      d="m39 12-6 1 3-1a28 28 0 0 0-26 28 28 28 0 0 0 29 29V54a21 21 0 0 0 21-21 21 21 0 0 0-21-21m0 6a15 15 0 0 1 15 15 15 15 0 0 1-15 14z"
-      paintOrder="stroke markers fill"
-    />
+  // <svg
+  //   xmlns="http://www.w3.org/2000/svg"
+  //   viewBox="0 0 70 81"
+  //   fill="currentColor"
+  //   {...props}
+  // >
+  //   <path
+  //     d="m39 12-6 1 3-1a28 28 0 0 0-26 28 28 28 0 0 0 29 29V54a21 21 0 0 0 21-21 21 21 0 0 0-21-21m0 6a15 15 0 0 1 15 15 15 15 0 0 1-15 14z"
+  //     paintOrder="stroke markers fill"
+  //   />
+  // </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" {...props}>
+      <path d="m120.357 101.346-20.714 71.726h344.66l20.714-71.726zM67.697 205.588l-20.714 71.726h71.538L79.08 410.654h68.357l43.492-147.04v147.04h68.357l60.655-205.07h-68.357l-43.492 147.04v-147.04h-68.357z"></path>
   </svg>
 );
 
