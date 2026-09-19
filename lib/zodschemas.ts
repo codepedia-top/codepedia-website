@@ -5,7 +5,7 @@ export const metadataSchema = z.object({
   description: z.string().min(1),
   author: z.string().min(1),
   publishedAt: z.coerce.date(),
-  updatedAt: z.coerce.date().optional(),
+  updatedAt: z.coerce.date(),
   image: z.url(),
   tags: z.array(z.string()).min(1),
   readingTime: z.number().positive(),
