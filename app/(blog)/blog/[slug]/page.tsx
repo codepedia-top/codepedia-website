@@ -1,7 +1,33 @@
-import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type { MDXContent } from "mdx/types";
+import {
+  metadataSchema,
+  type Metadata as PostMetadata,
+} from "@/lib/zodschemas";
+
+type LoadedPost = {
+  Content: MDXContent;
+  metadata: PostMetadata;
+};
+
+async function loadPost(slug: string): Promise<LoadedPost | null> {
+  try {
+    const post = await import(`@/content/posts/${slug}.mdx`);
+    const parsed = metadataSchema.safeParse(post.metadata);
+    if (!parsed.success) {
+      console.error(
+        `Invalid metadata in post "${slug}":`,
+        parsed.error.issues,
+      );
+      return null;
+    }
+    return { Content: post.default, metadata: parsed.data };
+  } catch {
+    return null;
+  }
+}
 
 export async function generateMetadata({
   params,
@@ -9,13 +35,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  let metadata;
-  try {
-    const post = await import(`@/content/posts/${slug}.mdx`);
-    metadata = post.metadata;
-  } catch {
-    return {};
-  }
+  const post = await loadPost(slug);
+  if (!post) return {};
+  const { metadata } = post;
   return {
     title: `${metadata.title} | codepedia`,
     description: metadata.description,
@@ -55,14 +77,9 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  let Content, metadata;
-  try {
-    const post = await import(`@/content/posts/${slug}.mdx`);
-    Content = post.default;
-    metadata = post.metadata;
-  } catch {
-    return notFound();
-  }
+  const post = await loadPost(slug);
+  if (!post) return notFound();
+  const { Content, metadata } = post;
   return (
     <>
       <div className="mx-auto mt-20 mb-20 max-w-6xl px-5">
@@ -79,7 +96,9 @@ export default async function Page({
                   </p>
                 )}
                 <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
-                  <time dateTime={metadata.publishedAt}>
+                  <time
+                    dateTime={metadata.publishedAt.toISOString()}
+                  >
                     {new Date(metadata.publishedAt).toLocaleDateString(
                       "fa-IR",
                       {
@@ -94,12 +113,6 @@ export default async function Page({
                     {metadata.readingTime.toLocaleString("fa-IR")} دقیقه برای
                     خواندن
                   </span>
-                  {metadata.tag && (
-                    <>
-                      <span>&middot;</span>
-                      <Badge>{metadata.tag}</Badge>
-                    </>
-                  )}
                 </div>
               </header>
 
