@@ -38,6 +38,12 @@ export async function generateMetadata({
   const post = await loadPost(slug);
   if (!post) return {};
   const { metadata } = post;
+
+  const publishedTime = metadata.publishedAt.toISOString();
+  const modifiedTime =
+    metadata.updatedAt?.toISOString() ??
+    metadata.publishedAt.toISOString();
+
   return {
     title: `${metadata.title} | codepedia`,
     description: metadata.description,
@@ -55,8 +61,8 @@ export async function generateMetadata({
       locale: "fa_IR",
       type: "article",
 
-      publishedTime: new Date(metadata.publishedAt).toISOString(),
-      modifiedTime: new Date(metadata.updatedAt).toISOString(),
+      publishedTime,
+      modifiedTime,
       images: [metadata.image],
     },
     twitter: {
